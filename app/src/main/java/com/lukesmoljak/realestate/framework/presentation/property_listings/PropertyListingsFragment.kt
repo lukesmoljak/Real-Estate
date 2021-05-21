@@ -68,6 +68,7 @@ class PropertyListingsFragment(
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        listAdapter = null
     }
 
     private fun getAppComponent(): AppComponent {
