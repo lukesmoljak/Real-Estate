@@ -1,6 +1,7 @@
 package com.lukesmoljak.realestate.business.interactors
 
 import com.google.gson.GsonBuilder
+import com.lukesmoljak.realestate.business.data.network.MockWebServerResponses
 import com.lukesmoljak.realestate.business.data.network.NetworkDataSourceImpl
 import com.lukesmoljak.realestate.business.domain.model.Property
 import com.lukesmoljak.realestate.framework.datasource.network.api.ApiService
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.net.HttpURLConnection
+
 
 /*
 
@@ -36,16 +38,16 @@ class GetPropertyListingsUseCaseTests {
     fun setup() {
         mockWebServer = MockWebServer()
         mockWebServer.start()
-        val baseUrl = mockWebServer.url("api_responses/")
+        val baseUrl = mockWebServer.url("/")
         val gson = GsonBuilder()
                 .setLenient()
                 .create()
         apiService = Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(
-                GsonConverterFactory.create(
-                    gson
-                )
+                    GsonConverterFactory.create(
+                            gson
+                    )
             )
             .build()
             .create(ApiService::class.java)
@@ -55,19 +57,17 @@ class GetPropertyListingsUseCaseTests {
         )
     }
 
-
     @AfterEach
     fun tearDown() {
         mockWebServer.shutdown()
     }
 
-    // 1 - TODO - Either reading json file incorrectly or json needs modificationp
     @Test
     fun getPropertyListingsUseCase_success_verifyEmittedDataAndLoadingDataState() {
         mockWebServer.enqueue(
-            MockResponse()
-                .setResponseCode(HttpURLConnection.HTTP_OK)
-                .setBody("properties.json")
+                MockResponse()
+                        .setResponseCode(HttpURLConnection.HTTP_OK)
+                        .setBody(MockWebServerResponses.PROPERTIES_RESPONSE)
         )
 
         runBlocking {
