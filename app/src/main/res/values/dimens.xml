@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="listing_item_property_photo_height">250dp</dimen>
+    <dimen name="listing_item_property_photo_margin_bottom">30dp</dimen>
+    <dimen name="listing_item_margin_sides">20dp</dimen>
+    <dimen name="listing_item_agent_photo_dimen">65dp</dimen>
+    <dimen name="listing_item_title_text_size">25sp</dimen>
+    <dimen name="listing_item_distance_between_address_and_title">10dp</dimen>
+    <dimen name="listing_item_distance_between_address_lines">3dp</dimen>
+    <dimen name="listing_item_icon_margin_top">5dp</dimen>
+    <dimen name="listing_item_icon_margin_start">4dp</dimen>
+    <dimen name="listing_item_icon_text_margin_start">8dp</dimen>
+    <dimen name="agent_name_text_size">10sp</dimen>
+</resources>

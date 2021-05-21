@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Real Estate</string>
+
+    <string name="within_network">Within Network</string>
 </resources>

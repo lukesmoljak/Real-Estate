@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/listing_item_margin_sides"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/property_photo_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/listing_item_property_photo_height"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/property_photo_image_view"
+        android:text="@string/within_network"
+        android:layout_marginTop="@dimen/listing_item_property_photo_margin_bottom"
+        android:layout_marginStart="@dimen/listing_item_margin_sides"
+        android:textSize="@dimen/listing_item_title_text_size"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/street_address_line1_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/title_text_view"
+        app:layout_constraintTop_toBottomOf="@id/title_text_view"
+        android:layout_marginTop="@dimen/listing_item_distance_between_address_and_title"
+        tools:text="206/64-68 Gladesville Road"
+        android:textColor="@color/grey"
+        />
+
+    <TextView
+        android:id="@+id/street_address_line2_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/title_text_view"
+        app:layout_constraintTop_toBottomOf="@id/street_address_line1_text_view"
+        android:layout_marginTop="@dimen/listing_item_distance_between_address_lines"
+        tools:text="Hunters Hill, 2110"
+        android:textColor="@color/grey"
+        />
+
+    <TextView
+        android:id="@+id/suburb_postcode_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/title_text_view"
+        app:layout_constraintTop_toBottomOf="@id/street_address_line2_text_view"
+        />
+
+    <TextView
+        android:id="@+id/num_beds_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/title_text_view"
+        app:layout_constraintTop_toBottomOf="@id/suburb_postcode_text_view"
+        tools:text="2"
+        android:textColor="@color/black"
+        />
+
+    <ImageView
+        android:id="@+id/beds_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bed"
+        app:layout_constraintStart_toEndOf="@id/num_beds_text_view"
+        app:layout_constraintTop_toTopOf="@id/num_beds_text_view"
+        android:layout_marginTop="@dimen/listing_item_icon_margin_top"
+        android:layout_marginStart="@dimen/listing_item_icon_margin_start"
+        />
+
+    <TextView
+        android:id="@+id/num_bathrooms_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/beds_image_view"
+        app:layout_constraintTop_toTopOf="@id/num_beds_text_view"
+        tools:text="1"
+        android:textColor="@color/black"
+        android:layout_marginStart="@dimen/listing_item_icon_text_margin_start"
+        />
+
+    <ImageView
+        android:id="@+id/bathroom_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bath"
+        app:layout_constraintStart_toEndOf="@id/num_bathrooms_text_view"
+        app:layout_constraintTop_toTopOf="@id/num_beds_text_view"
+        android:layout_marginTop="@dimen/listing_item_icon_margin_top"
+        android:layout_marginStart="@dimen/listing_item_icon_margin_start"
+        />
+
+    <TextView
+        android:id="@+id/num_car_spaces_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/bathroom_image_view"
+        app:layout_constraintTop_toTopOf="@id/num_beds_text_view"
+        tools:text="1"
+        android:textColor="@color/black"
+        android:layout_marginStart="@dimen/listing_item_icon_text_margin_start"
+        />
+
+    <ImageView
+        android:id="@+id/car_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/car"
+        app:layout_constraintStart_toEndOf="@id/num_car_spaces_text_view"
+        app:layout_constraintTop_toTopOf="@id/num_beds_text_view"
+        android:layout_marginTop="@dimen/listing_item_icon_margin_top"
+        android:layout_marginStart="@dimen/listing_item_icon_margin_start"
+        />
+
+    <ImageView
+        android:id="@+id/agent_photo_image_view"
+        android:layout_width="@dimen/listing_item_agent_photo_dimen"
+        android:layout_height="@dimen/listing_item_agent_photo_dimen"
+        app:layout_constraintTop_toBottomOf="@id/property_photo_image_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/listing_item_property_photo_margin_bottom"
+        android:layout_marginEnd="@dimen/listing_item_margin_sides"
+        />
+
+    <TextView
+        android:id="@+id/agent_name_text_view"
+        android:layout_width="@dimen/listing_item_agent_photo_dimen"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/agent_photo_image_view"
+        app:layout_constraintTop_toBottomOf="@id/agent_photo_image_view"
+        app:layout_constraintEnd_toEndOf="@id/agent_photo_image_view"
+        tools:text="Chris Wilkins"
+        android:textSize="@dimen/agent_name_text_size"
+        android:gravity="center_horizontal"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
