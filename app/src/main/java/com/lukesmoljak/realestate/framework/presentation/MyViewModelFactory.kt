@@ -3,6 +3,7 @@ package com.lukesmoljak.realestate.framework.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.lukesmoljak.realestate.business.interactors.GetPropertyListingsUseCase
+import com.lukesmoljak.realestate.framework.presentation.property_detail.PropertyDetailViewModel
 import com.lukesmoljak.realestate.framework.presentation.property_listings.PropertyListingsViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -21,6 +22,10 @@ constructor(
                 PropertyListingsViewModel(
                     getPropertyListingsUseCase = getPropertyListingsUseCase
                 ) as T
+            }
+
+            PropertyDetailViewModel::class.java -> {
+                PropertyDetailViewModel() as T
             }
 
             else -> {

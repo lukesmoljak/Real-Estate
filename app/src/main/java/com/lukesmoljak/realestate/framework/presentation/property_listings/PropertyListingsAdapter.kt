@@ -98,6 +98,6 @@ class PropertyListingsAdapter(
     }
 
     interface Interaction {
-        fun onItemSelected(report: Property)
+        fun onItemSelected(property: Property)
     }
 }

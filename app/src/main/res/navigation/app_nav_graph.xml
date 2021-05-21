@@ -6,5 +6,22 @@
     <fragment
         android:id="@+id/propertyListingsFragment"
         android:name="com.lukesmoljak.realestate.framework.presentation.property_listings.PropertyListingsFragment"
-        android:label="PropertyListingsFragment" />
+        android:label="PropertyListingsFragment" >
+        <action
+            android:id="@+id/action_propertyListingsFragment_to_propertyDetailFragment"
+            app:destination="@id/propertyDetailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/propertyDetailFragment"
+        android:name="com.lukesmoljak.realestate.framework.presentation.property_detail.PropertyDetailFragment"
+        android:label="PropertyDetailFragment" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>

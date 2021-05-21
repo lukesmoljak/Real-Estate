@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lukesmoljak.realestate.business.domain.model.Property
 import com.lukesmoljak.realestate.databinding.FragmentPropertyListingsBinding
@@ -51,6 +52,10 @@ class PropertyListingsFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.actionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
         setupViews()
         subscribeObservers()
     }
@@ -105,8 +110,12 @@ class PropertyListingsFragment(
         })
     }
 
-    override fun onItemSelected(report: Property) {
-        TODO("Not yet implemented")
+    override fun onItemSelected(property: Property) {
+        val action = PropertyListingsFragmentDirections
+                .actionPropertyListingsFragmentToPropertyDetailFragment(
+                        id = property.id
+                )
+        findNavController().navigate(action)
     }
 
 }

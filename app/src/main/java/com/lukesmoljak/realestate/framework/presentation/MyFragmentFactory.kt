@@ -3,6 +3,7 @@ package com.lukesmoljak.realestate.framework.presentation
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import androidx.lifecycle.ViewModelProvider
+import com.lukesmoljak.realestate.framework.presentation.property_detail.PropertyDetailFragment
 import com.lukesmoljak.realestate.framework.presentation.property_listings.PropertyListingsFragment
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -24,6 +25,14 @@ constructor(
                     PropertyListingsFragment(
                         viewModelFactory
                     )
+                fragment
+            }
+
+            PropertyDetailFragment::class.java.name -> {
+                val fragment =
+                        PropertyDetailFragment(
+                                viewModelFactory
+                        )
                 fragment
             }
 

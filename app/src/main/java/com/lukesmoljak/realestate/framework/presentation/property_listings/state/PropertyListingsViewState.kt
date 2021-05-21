@@ -4,4 +4,5 @@ sealed class PropertyListingsViewState {
 
     class Loading(val isLoading: Boolean): PropertyListingsViewState()
     class Error(val message: String): PropertyListingsViewState()
+    // TODO: Empty state?
 }
