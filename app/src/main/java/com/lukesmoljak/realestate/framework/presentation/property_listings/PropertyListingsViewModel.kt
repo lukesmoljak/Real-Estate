@@ -9,6 +9,7 @@ import com.lukesmoljak.realestate.business.domain.model.Property
 import com.lukesmoljak.realestate.business.domain.state.DataState
 import com.lukesmoljak.realestate.business.interactors.GetPropertyListingsUseCase
 import com.lukesmoljak.realestate.framework.presentation.property_listings.PropertyListingsViewModel.PropertyListingsEvent.GetPropertyListingsEvent
+import com.lukesmoljak.realestate.framework.presentation.property_listings.state.PropertyListingsViewState
 import com.lukesmoljak.realestate.util.Constants.TAG
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -18,16 +19,13 @@ class PropertyListingsViewModel(
     private val getPropertyListingsUseCase: GetPropertyListingsUseCase
 ): ViewModel() {
 
-    private var _error = MutableLiveData<String>()
-    private var _isLoading = MutableLiveData(false)
     private var _propertyListings: MutableLiveData<List<Property>> = MutableLiveData()
+    private var _viewState: MutableLiveData<PropertyListingsViewState> = MutableLiveData()
 
-    val error: LiveData<String>
-        get() = _error
-    val isLoading: LiveData<Boolean>
-        get() = _isLoading
     val propertyListings: LiveData<List<Property>>
         get() = _propertyListings
+    val viewState: LiveData<PropertyListingsViewState>
+        get() = _viewState
 
     init {
         onTriggerEvent(GetPropertyListingsEvent)
@@ -46,13 +44,13 @@ class PropertyListingsViewModel(
             try {
                 getPropertyListingsUseCase.getPropertyListings().collect { dataState ->
                     dataState.loading.let { isLoading ->
-                        _isLoading.value = isLoading
+                        _viewState.value = PropertyListingsViewState.Loading(isLoading)
                     }
                     dataState.data?.let { data ->
                         _propertyListings.value = data
                     }
                     dataState.error?.let { errorMessage ->
-                        _error.value = errorMessage
+                        _viewState.value = PropertyListingsViewState.Error(errorMessage)
                     }
                 }
             } catch (e: Exception) {

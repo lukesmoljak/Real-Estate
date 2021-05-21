@@ -11,10 +11,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.lukesmoljak.realestate.business.domain.model.Property
 import com.lukesmoljak.realestate.databinding.FragmentPropertyListingsBinding
 import com.lukesmoljak.realestate.di.AppComponent
 import com.lukesmoljak.realestate.framework.BaseApplication
+import com.lukesmoljak.realestate.framework.presentation.property_listings.state.PropertyListingsViewState
 import com.lukesmoljak.realestate.framework.presentation.util.gone
 import com.lukesmoljak.realestate.framework.presentation.util.visible
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -52,10 +54,6 @@ class PropertyListingsFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.actionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            setDisplayShowHomeEnabled(true)
-        }
         setupViews()
         subscribeObservers()
     }
@@ -100,13 +98,17 @@ class PropertyListingsFragment(
                 listAdapter?.notifyDataSetChanged()
             }
         })
-        viewModel.isLoading.observe(viewLifecycleOwner, { isLoading ->
-            if (isLoading) binding.progressBar.visible()
-            else binding.progressBar.gone()
-        })
-        viewModel.error.observe(viewLifecycleOwner, { message ->
-            if(!message.isNullOrEmpty()) {
-                Toast.makeText(activity, message, Toast.LENGTH_LONG).show()
+        viewModel.viewState.observe(viewLifecycleOwner, { viewState ->
+            when (viewState) {
+                is PropertyListingsViewState.Loading -> {
+                    if (viewState.isLoading) binding.progressBar.visible()
+                    else binding.progressBar.gone()
+                }
+                is PropertyListingsViewState.Error -> {
+                    if(viewState.message.isNotEmpty()) {
+                        Snackbar.make(binding.root, viewState.message, Snackbar.LENGTH_LONG).show()
+                    }
+                }
             }
         })
     }
